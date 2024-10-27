@@ -49,11 +49,14 @@ export const TapoDevice = ({ send }: TapoProtocol) => {
 
       setColorAndBrightness: async (colour: string = 'white', brightnessLevel: number = 100) => {
         const params = getColour(colour);
-
+console.log('PARAMS: ', params)
         const setColourRequest = {
           "method": "set_device_info",
-          params, 
-          "brightness": brightnessLevel,
+          "params":{
+            ...params,
+            "brightness": brightnessLevel,
+           
+          }
         }
         await send(setColourRequest)
       },
